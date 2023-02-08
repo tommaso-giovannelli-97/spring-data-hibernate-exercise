@@ -50,6 +50,13 @@ public class Employee {
         this.projects = projects;
     }
 
+    public Employee(Long id, String name, String surname, Integer age) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+    }
+
     public Long getId() {
         return id;
     }
