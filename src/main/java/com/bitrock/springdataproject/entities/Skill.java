@@ -1,15 +1,8 @@
 package com.bitrock.springdataproject.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.Set;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
 @Entity
 @Table(name = "Skills")
 public class Skill {
@@ -23,4 +16,29 @@ public class Skill {
 
     //@ManyToMany(mappedBy = "skills")
     //Set<Employee> employees;
+
+
+    public Skill() {
+    }
+
+    public Skill(Long id, String skillName) {
+        this.id = id;
+        this.skillName = skillName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getSkillName() {
+        return skillName;
+    }
+
+    public void setSkillName(String skillName) {
+        this.skillName = skillName;
+    }
 }
