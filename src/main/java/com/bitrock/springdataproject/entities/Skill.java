@@ -21,6 +21,6 @@ public class Skill {
     @Column(name = "skill_name",nullable = false)
     private String skillName;
 
-    @ManyToMany(mappedBy = "skills")
-    Set<Employee> employees;
+    //@ManyToMany(mappedBy = "skills")
+    //Set<Employee> employees;
 }

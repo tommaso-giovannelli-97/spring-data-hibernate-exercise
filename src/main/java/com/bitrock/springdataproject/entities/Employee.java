@@ -30,7 +30,7 @@ public class Employee {
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
-            name = "Employees_Skills",
+            name = "employees_skills",
             joinColumns = { @JoinColumn(name = "employee_id") },
             inverseJoinColumns = { @JoinColumn(name = "skill_id") }
     )
@@ -38,15 +38,9 @@ public class Employee {
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
-            name = "Employees_Projects",
+            name = "employees_projects",
             joinColumns = { @JoinColumn(name = "employee_id") },
             inverseJoinColumns = { @JoinColumn(name = "project_id") }
     )
     private Set<Project> projects;
-
-    public Employee(String name, String surname, Integer age) {
-        this.name = name;
-        this.surname = surname;
-        this.age = age;
-    }
 }
