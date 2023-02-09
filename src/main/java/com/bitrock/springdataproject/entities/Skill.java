@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "Skills")
+@Table(name = "skills")
 public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,9 +14,8 @@ public class Skill {
     @Column(name = "skill_name",nullable = false)
     private String skillName;
 
-    //@ManyToMany(mappedBy = "skills")
-    //Set<Employee> employees;
-
+//    @OneToMany(mappedBy = "skill", cascade = CascadeType.ALL)
+//    Set<EmployeeSkill> employees;
 
     public Skill() {
     }
@@ -41,4 +40,5 @@ public class Skill {
     public void setSkillName(String skillName) {
         this.skillName = skillName;
     }
+
 }

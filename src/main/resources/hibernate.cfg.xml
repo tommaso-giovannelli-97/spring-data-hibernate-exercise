@@ -27,6 +27,8 @@
         <mapping class="com.bitrock.springdataproject.entities.Employee"/>
         <mapping class="com.bitrock.springdataproject.entities.Project"/>
         <mapping class="com.bitrock.springdataproject.entities.Skill"/>
+        <mapping class="com.bitrock.springdataproject.entities.EmployeeProject"/>
+        <mapping class="com.bitrock.springdataproject.entities.EmployeeSkill"/>
 
     </session-factory>
 </hibernate-configuration>

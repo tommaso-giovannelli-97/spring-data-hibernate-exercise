@@ -1,12 +1,10 @@
 package com.bitrock.springdataproject.entities;
 
-
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "Employees")
+@Table(name = "employees")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,39 +20,27 @@ public class Employee {
     @Column(name = "age",nullable = false)
     private Integer age;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "employees_skills",
-            joinColumns = { @JoinColumn(name = "employee_id") },
-            inverseJoinColumns = { @JoinColumn(name = "skill_id") }
-    )
-    private Set<Skill> skills;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "employeeSkill", cascade = CascadeType.ALL)
+    private Set<EmployeeSkill> skills;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "employees_projects",
-            joinColumns = { @JoinColumn(name = "employee_id") },
-            inverseJoinColumns = { @JoinColumn(name = "project_id") }
-    )
-    private Set<Project> projects;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "employeeProject", cascade = CascadeType.ALL)
+    private Set<EmployeeProject> projects;
 
     public Employee() {
     }
 
-    public Employee(Long id, String name, String surname, Integer age, Set<Skill> skills, Set<Project> projects) {
-        this.id = id;
+    public Employee(String name, String surname, Integer age) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+    }
+
+    public Employee(String name, String surname, Integer age, Set<EmployeeSkill> skills, Set<EmployeeProject> projects) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.skills = skills;
         this.projects = projects;
-    }
-
-    public Employee(Long id, String name, String surname, Integer age) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.age = age;
     }
 
     public Long getId() {
@@ -89,27 +75,26 @@ public class Employee {
         this.age = age;
     }
 
-    public Set<Skill> getSkills() {
+    public Set<EmployeeSkill> getSkills() {
         return skills;
     }
 
-    public void setSkills(Set<Skill> skills) {
+    public void setSkills(Set<EmployeeSkill> skills) {
         this.skills = skills;
     }
 
-    public Set<Project> getProjects() {
+    public Set<EmployeeProject> getProjects() {
         return projects;
     }
 
-    public void setProjects(Set<Project> projects) {
+    public void setProjects(Set<EmployeeProject> projects) {
         this.projects = projects;
     }
 
     @Override
     public String toString() {
         return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", age=" + age +
                 ", skills=" + skills +

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "Projects")
+@Table(name = "projects")
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,17 +18,16 @@ public class Project {
     @JoinColumn(name="customer_id", nullable=false)
     private Customer customer;
 
-    @ManyToMany(mappedBy = "projects")
-    Set<Employee> employees;
+//    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+//    private Set<EmployeeProject> employees;
 
     public Project() {
     }
 
-    public Project(Long id, String projectName, Customer customer, Set<Employee> employees) {
-        this.id = id;
+    public Project(String projectName, Customer customer, Set<EmployeeProject> employees) {
         this.projectName = projectName;
         this.customer = customer;
-        this.employees = employees;
+        //this.employees = employees;
     }
 
     public Long getId() {
@@ -53,13 +52,5 @@ public class Project {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public Set<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(Set<Employee> employees) {
-        this.employees = employees;
     }
 }
