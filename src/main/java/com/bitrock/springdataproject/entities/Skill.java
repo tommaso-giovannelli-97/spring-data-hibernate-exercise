@@ -14,10 +14,11 @@ public class Skill {
     @Column(name = "skill_name",nullable = false)
     private String skillName;
 
-//    @OneToMany(mappedBy = "skill", cascade = CascadeType.ALL)
-//    Set<EmployeeSkill> employees;
-
     public Skill() {
+    }
+
+    public Skill(Long id) {
+        this.id = id;
     }
 
     public Skill(Long id, String skillName) {

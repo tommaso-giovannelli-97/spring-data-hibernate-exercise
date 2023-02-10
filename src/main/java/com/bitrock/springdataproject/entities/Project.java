@@ -15,19 +15,19 @@ public class Project {
     private String projectName;
 
     @ManyToOne
-    @JoinColumn(name="customer_id", nullable=false)
+    @JoinColumn(name="customer_id")
     private Customer customer;
 
-//    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
-//    private Set<EmployeeProject> employees;
-
     public Project() {
+    }
+
+    public Project(Long id) {
+        this.id = id;
     }
 
     public Project(String projectName, Customer customer, Set<EmployeeProject> employees) {
         this.projectName = projectName;
         this.customer = customer;
-        //this.employees = employees;
     }
 
     public Long getId() {

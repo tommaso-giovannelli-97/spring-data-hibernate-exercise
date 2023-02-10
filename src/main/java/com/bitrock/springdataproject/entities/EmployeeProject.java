@@ -18,6 +18,9 @@ public class EmployeeProject {
     @JoinColumn(name="project_id", nullable=false)
     private Project project;
 
+    public EmployeeProject() {
+    }
+
     public EmployeeProject(Employee employeeProject, Project project) {
         this.employeeProject = employeeProject;
         this.project = project;

@@ -42,6 +42,7 @@ public class BaseDbService<T> {
     public void create(T entity) {
         Session session = getSession();
         session.save(entity);
+        session.close();
     }
 
     public void deleteById(String hqlQuery, Long id) {
