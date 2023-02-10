@@ -7,7 +7,7 @@ public class ProjectService extends BaseDbService<Project> {
 
     public void updateProject(Long projectId, Project project) {
         Session session = getSession();
-        Project oldProject = getEntityById("Select p from Project p where p.id = :id", projectId);
+        Project oldProject = getById("Select p from Project p where p.id = :id", projectId);
 
         if(oldProject != null) {
             project.setId(projectId);

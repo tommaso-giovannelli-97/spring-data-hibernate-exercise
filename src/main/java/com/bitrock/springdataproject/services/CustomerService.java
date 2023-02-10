@@ -7,7 +7,7 @@ public class CustomerService extends BaseDbService<Customer>{
     
     public void updateCustomer(Long customerId, Customer customer) {
         Session session = getSession();
-        Customer oldCustomer = getEntityById("Select c from Customer c where c.id = :id", customerId);
+        Customer oldCustomer = getById("Select c from Customer c where c.id = :id", customerId);
 
         if(oldCustomer != null) {
             customer.setId(customerId);

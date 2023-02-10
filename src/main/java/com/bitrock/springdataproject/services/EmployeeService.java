@@ -7,7 +7,7 @@ public class EmployeeService extends BaseDbService<Employee>{
 
     public void updateEmployee(Long employeeId, Employee employee) {
         Session session = getSession();
-        Employee oldEmployee = getEntityById("Select e from Employee e where e.id = :id", employeeId);
+        Employee oldEmployee = getById("Select e from Employee e where e.id = :id", employeeId);
 
         if(oldEmployee != null) {
             employee.setId(employeeId);

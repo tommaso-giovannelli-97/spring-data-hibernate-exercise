@@ -15,7 +15,7 @@ public class Main {
 
         List<Employee> allEmployees = employeeService.getAll(getAllEmployeeHql);
         allEmployees.forEach(System.out::println);
-        Employee employeeById = employeeService.getEntityById(getEmployeeByIdHql,2L);
+        Employee employeeById = employeeService.getById(getEmployeeByIdHql,2L);
 
         Employee newEmployee = new Employee("Mario","Rossi",45);
         employeeService.updateEmployee(2L, newEmployee);

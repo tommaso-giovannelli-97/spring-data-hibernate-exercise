@@ -30,7 +30,7 @@ public class BaseDbService<T> {
         return entities;
     }
 
-    public T getEntityById(String hqlQuery, Long id) {
+    public T getById(String hqlQuery, Long id) {
         Session session = getSession();
         Query<T> query = session.createQuery(hqlQuery);
         query.setParameter("id",id);
@@ -39,12 +39,12 @@ public class BaseDbService<T> {
         return entity;
     }
 
-    public void createEntity(T entity) {
+    public void create(T entity) {
         Session session = getSession();
         session.save(entity);
     }
 
-    public void deleteEmployeeById(String hqlQuery, Long id) {
+    public void deleteById(String hqlQuery, Long id) {
         Session session = getSession();
         Query<T> query = session.createQuery(hqlQuery);
         query.setParameter("id",id);
