@@ -1,6 +1,7 @@
 package com.bitrock.springdataproject.controllers;
 
 import com.bitrock.springdataproject.entities.Employee;
+import com.bitrock.springdataproject.entities.EmployeeProject;
 import com.bitrock.springdataproject.entities.EmployeeSkill;
 import com.bitrock.springdataproject.entities.Skill;
 import com.bitrock.springdataproject.services.EmployeeService;
@@ -35,5 +36,10 @@ public class EmployeeController {
     @PostMapping("/skills")
     ResponseEntity<EmployeeSkill> addEmployeeSkill(@RequestParam Long employeeId, @RequestParam Long skillId) throws Exception {
         return new ResponseEntity<>(employeeService.addEmployeeSkill(employeeId, skillId), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/projects")
+    ResponseEntity<EmployeeProject> addEmployeeProject(@RequestParam Long employeeId, @RequestParam Long projectId) throws Exception {
+        return new ResponseEntity<>(employeeService.addEmployeeProject(employeeId, projectId), HttpStatus.CREATED);
     }
 }

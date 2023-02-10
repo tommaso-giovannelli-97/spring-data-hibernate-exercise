@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,7 +20,11 @@ public class Project extends BaseEntity{
     @Column(name = "project_name")
     private String projectName;
 
-    @ManyToOne
-    @JoinColumn(name="customer_id", nullable=false)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name="customer_id")
     private Customer customer;
+
+    public Project(Long id) {
+        this.id = id;
+    }
 }

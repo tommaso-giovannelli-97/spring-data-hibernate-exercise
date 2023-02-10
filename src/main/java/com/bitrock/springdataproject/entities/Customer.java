@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -24,4 +25,17 @@ public class Customer extends BaseEntity{
 
     @OneToMany(mappedBy = "customer")
     private Set<Project> projects;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Customer)) return false;
+        Customer customer = (Customer) o;
+        return getId().equals(customer.getId()) && getCustomerName().equals(customer.getCustomerName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getCustomerName());
+    }
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -35,5 +36,18 @@ public class Employee extends BaseEntity{
 
     public Employee(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+        Employee employee = (Employee) o;
+        return getId().equals(employee.getId()) && getName().equals(employee.getName()) && getSurname().equals(employee.getSurname()) && getAge().equals(employee.getAge());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getSurname(), getAge());
     }
 }

@@ -1,11 +1,7 @@
 package com.bitrock.springdataproject.services;
 
-import com.bitrock.springdataproject.entities.Employee;
-import com.bitrock.springdataproject.entities.EmployeeSkill;
-import com.bitrock.springdataproject.entities.Skill;
-import com.bitrock.springdataproject.repositories.EmployeeRepository;
-import com.bitrock.springdataproject.repositories.EmployeeSkillRepository;
-import com.bitrock.springdataproject.repositories.SkillRepository;
+import com.bitrock.springdataproject.entities.*;
+import com.bitrock.springdataproject.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +13,11 @@ public class EmployeeService extends BaseDbService<Employee> {
     @Autowired
     EmployeeSkillRepository employeeSkillRepository;
     @Autowired
+    EmployeeProjectRepository employeeProjectRepository;
+    @Autowired
     SkillRepository skillRepository;
+    @Autowired
+    ProjectRepository projectRepository;
 
     public EmployeeService(EmployeeRepository repository) {
         super(repository);
@@ -34,5 +34,18 @@ public class EmployeeService extends BaseDbService<Employee> {
         Skill skill = new Skill(skillId);
         EmployeeSkill employeeSkill = new EmployeeSkill(employee, skill);
         return employeeSkillRepository.save(employeeSkill);
+    }
+
+    public EmployeeProject addEmployeeProject(Long employeeId, Long projectId) throws Exception {
+        Optional<Employee> optEmployee = repository.findById(employeeId);
+        Optional<Project> optProject = projectRepository.findById(projectId);
+
+        if (optEmployee.isEmpty() || optProject.isEmpty()) {
+            throw new Exception("No existing Employee or Project with given ids");
+        }
+        Employee employee = new Employee(employeeId);
+        Project project = new Project(projectId);
+        EmployeeProject employeeProject = new EmployeeProject(employee, project);
+        return employeeProjectRepository.save(employeeProject);
     }
 }
