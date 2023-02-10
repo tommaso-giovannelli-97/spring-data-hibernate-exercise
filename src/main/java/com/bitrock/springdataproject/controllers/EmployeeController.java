@@ -7,11 +7,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
+
+    @GetMapping
+    ResponseEntity<List<Employee>> getAll() {
+        return new ResponseEntity<>(employeeService.getAll(), HttpStatus.OK);
+    }
 
     @PostMapping
     ResponseEntity<Employee> save(@RequestBody Employee employee) {

@@ -11,8 +11,8 @@ import java.util.Set;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "Projects")
-public class Project {
+@Table(name = "projects")
+public class Project extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "project_id", nullable = false)
@@ -24,7 +24,4 @@ public class Project {
     @ManyToOne
     @JoinColumn(name="customer_id", nullable=false)
     private Customer customer;
-
-    @ManyToMany(mappedBy = "projects")
-    Set<Employee> employees;
 }

@@ -11,8 +11,8 @@ import java.util.Set;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "Customers")
-public class Customer {
+@Table(name = "customers")
+public class Customer extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

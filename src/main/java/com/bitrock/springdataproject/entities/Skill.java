@@ -5,14 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "Skills")
-public class Skill {
+@Table(name = "skills")
+public class Skill extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "skill_id", nullable = false)
@@ -20,7 +19,4 @@ public class Skill {
 
     @Column(name = "skill_name",nullable = false)
     private String skillName;
-
-    //@ManyToMany(mappedBy = "skills")
-    //Set<Employee> employees;
 }

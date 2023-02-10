@@ -5,15 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "Employees")
-public class Employee {
+@Table(name = "employees")
+public class Employee extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employee_id", nullable = false)
@@ -28,19 +27,9 @@ public class Employee {
     @Column(name = "age",nullable = false)
     private Integer age;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "employees_skills",
-            joinColumns = { @JoinColumn(name = "employee_id") },
-            inverseJoinColumns = { @JoinColumn(name = "skill_id") }
-    )
-    private Set<Skill> skills;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "employeeSkill", cascade = CascadeType.ALL)
+    private Set<EmployeeSkill> skills;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "employees_projects",
-            joinColumns = { @JoinColumn(name = "employee_id") },
-            inverseJoinColumns = { @JoinColumn(name = "project_id") }
-    )
-    private Set<Project> projects;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "employeeProject", cascade = CascadeType.ALL)
+    private Set<EmployeeProject> projects;
 }
