@@ -11,7 +11,7 @@ import java.util.Optional;
  */
 public class BaseDbService<T extends BaseEntity> {
 
-    private final JpaRepository<T,Long> repository;
+    final JpaRepository<T,Long> repository;
 
     public BaseDbService(JpaRepository<T, Long> repository) {
         this.repository = repository;

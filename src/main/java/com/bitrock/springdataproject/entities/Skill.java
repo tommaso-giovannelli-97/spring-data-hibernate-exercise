@@ -19,4 +19,8 @@ public class Skill extends BaseEntity{
 
     @Column(name = "skill_name",nullable = false)
     private String skillName;
+
+    public Skill(Long id) {
+        this.id = id;
+    }
 }

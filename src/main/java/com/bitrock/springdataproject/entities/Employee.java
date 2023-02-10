@@ -27,9 +27,13 @@ public class Employee extends BaseEntity{
     @Column(name = "age",nullable = false)
     private Integer age;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "employeeSkill", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "skillEmployee", cascade = CascadeType.ALL)
     private Set<EmployeeSkill> skills;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "employeeProject", cascade = CascadeType.ALL)
     private Set<EmployeeProject> projects;
+
+    public Employee(Long id) {
+        this.id = id;
+    }
 }

@@ -19,10 +19,14 @@ public class EmployeeSkill extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
-    private Employee employeeSkill;
+    private Employee skillEmployee;
 
     @ManyToOne
     @JoinColumn(name = "skill_id", nullable = false)
     private Skill skill;
 
+    public EmployeeSkill(Employee skillEmployee, Skill skill) {
+        this.skillEmployee = skillEmployee;
+        this.skill = skill;
+    }
 }
