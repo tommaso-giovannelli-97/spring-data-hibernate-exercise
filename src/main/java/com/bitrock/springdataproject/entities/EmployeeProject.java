@@ -1,13 +1,14 @@
 package com.bitrock.springdataproject.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import javax.persistence.*;
+import java.util.Objects;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "employees_projects")
 public class EmployeeProject extends BaseEntity{
@@ -27,5 +28,27 @@ public class EmployeeProject extends BaseEntity{
     public EmployeeProject(Employee employeeProject, Project project) {
         this.employeeProject = employeeProject;
         this.project = project;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof EmployeeProject)) return false;
+        EmployeeProject that = (EmployeeProject) o;
+        return getId().equals(that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeProject{" +
+                "id=" + id +
+                ", employeeProject=" + employeeProject +
+                ", project=" + project +
+                '}';
     }
 }

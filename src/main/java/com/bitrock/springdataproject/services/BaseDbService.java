@@ -1,6 +1,10 @@
 package com.bitrock.springdataproject.services;
 
 import com.bitrock.springdataproject.entities.BaseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -40,4 +44,12 @@ public class BaseDbService<T extends BaseEntity> {
     }
 
     public void deleteById(Long id) {repository.deleteById(id);}
+
+    public List<T> findAllPaginated(Integer pageNumber, Integer size, String sortColumn ) {
+        Pageable page = sortColumn != null ? PageRequest.of(pageNumber, size, Sort.by(sortColumn))
+                : PageRequest.of(pageNumber, size);
+
+        Page<T> entitiesPage = repository.findAll(page);
+        return entitiesPage.getContent();
+    }
 }

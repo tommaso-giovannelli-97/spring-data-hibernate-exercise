@@ -10,31 +10,31 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-@Table(name = "employees_skills")
-public class EmployeeSkill extends BaseEntity{
+@Table(name = "projects_skills")
+public class ProjectSkill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employee_skill_id", nullable = false)
+    @Column(name = "project_skill_id", nullable = false)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id", nullable = false)
-    private Employee skillEmployee;
+    @JoinColumn(name = "project_id", nullable = false)
+    private Project project;
 
     @ManyToOne
     @JoinColumn(name = "skill_id", nullable = false)
     private Skill skill;
 
-    public EmployeeSkill(Employee skillEmployee, Skill skill) {
-        this.skillEmployee = skillEmployee;
+    public ProjectSkill(Project project, Skill skill) {
+        this.project = project;
         this.skill = skill;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof EmployeeSkill)) return false;
-        EmployeeSkill that = (EmployeeSkill) o;
+        if (!(o instanceof ProjectSkill)) return false;
+        ProjectSkill that = (ProjectSkill) o;
         return getId().equals(that.getId());
     }
 
@@ -45,9 +45,9 @@ public class EmployeeSkill extends BaseEntity{
 
     @Override
     public String toString() {
-        return "EmployeeSkill{" +
+        return "ProjectSkill{" +
                 "id=" + id +
-                ", skillEmployee=" + skillEmployee +
+                ", project=" + project +
                 ", skill=" + skill +
                 '}';
     }

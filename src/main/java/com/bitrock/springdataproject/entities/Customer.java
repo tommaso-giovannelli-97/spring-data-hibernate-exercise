@@ -1,8 +1,6 @@
 package com.bitrock.springdataproject.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -10,7 +8,8 @@ import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "customers")
 public class Customer extends BaseEntity{
@@ -37,5 +36,13 @@ public class Customer extends BaseEntity{
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getCustomerName());
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", customerName='" + customerName + '\'' +
+                '}';
     }
 }

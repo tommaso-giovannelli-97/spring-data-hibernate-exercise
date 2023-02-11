@@ -1,8 +1,7 @@
 package com.bitrock.springdataproject.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -10,7 +9,8 @@ import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "employees")
 public class Employee extends BaseEntity{
@@ -28,9 +28,11 @@ public class Employee extends BaseEntity{
     @Column(name = "age",nullable = false)
     private Integer age;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "skillEmployee", cascade = CascadeType.ALL)
     private Set<EmployeeSkill> skills;
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "employeeProject", cascade = CascadeType.ALL)
     private Set<EmployeeProject> projects;
 
@@ -43,11 +45,21 @@ public class Employee extends BaseEntity{
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
-        return getId().equals(employee.getId()) && getName().equals(employee.getName()) && getSurname().equals(employee.getSurname()) && getAge().equals(employee.getAge());
+        return getId().equals(employee.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getSurname(), getAge());
+        return Objects.hash(getId());
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
