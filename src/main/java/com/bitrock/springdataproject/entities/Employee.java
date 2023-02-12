@@ -29,11 +29,11 @@ public class Employee extends BaseEntity{
     private Integer age;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "skillEmployee", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "skillEmployee", cascade = CascadeType.ALL)
     private Set<EmployeeSkill> skills;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "employeeProject", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "employeeProject", cascade = CascadeType.ALL)
     private Set<EmployeeProject> projects;
 
     public Employee(Long id) {

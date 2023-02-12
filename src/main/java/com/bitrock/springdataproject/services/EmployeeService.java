@@ -3,13 +3,18 @@ package com.bitrock.springdataproject.services;
 import com.bitrock.springdataproject.entities.*;
 import com.bitrock.springdataproject.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class EmployeeService extends BaseDbService<Employee> {
 
+    //Repository for Custom methods
+    @Autowired
+    EmployeeRepository employeeRepository;
     @Autowired
     EmployeeSkillRepository employeeSkillRepository;
     @Autowired
@@ -19,7 +24,7 @@ public class EmployeeService extends BaseDbService<Employee> {
     @Autowired
     ProjectRepository projectRepository;
 
-    public EmployeeService(EmployeeRepository repository) {
+    public EmployeeService(JpaRepository<Employee,Long> repository) {
         super(repository);
     }
 
@@ -47,5 +52,9 @@ public class EmployeeService extends BaseDbService<Employee> {
         Project project = new Project(projectId);
         EmployeeProject employeeProject = new EmployeeProject(employee, project);
         return employeeProjectRepository.save(employeeProject);
+    }
+
+    public List<Employee> getAllEmployeesWithoutAGivenSkill (Skill skill) {
+        return employeeRepository.getAllEmployeesWithoutAGivenSkill(skill.getId());
     }
 }

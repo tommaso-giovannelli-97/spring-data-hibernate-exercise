@@ -29,6 +29,11 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.findAllPaginated(page, size, sortColumn), HttpStatus.OK);
     }
 
+    @GetMapping("/missingSkill")
+    ResponseEntity<List<Employee>> getAllEmployeesWithoutAGivenSkill(@RequestBody Skill skill) {
+        return new ResponseEntity<>(employeeService.getAllEmployeesWithoutAGivenSkill(skill), HttpStatus.OK);
+    }
+
     @PostMapping
     ResponseEntity<Employee> save(@RequestBody Employee employee) {
             return new ResponseEntity<>(employeeService.create(employee), HttpStatus.CREATED);
