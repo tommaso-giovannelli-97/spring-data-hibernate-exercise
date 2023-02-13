@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -61,5 +63,13 @@ public class Employee extends BaseEntity{
                 ", surname='" + surname + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    @JsonIgnore
+    public List<Long> getAllSkillsIds(){
+        return skills.stream()
+                .map(EmployeeSkill :: getSkill)
+                .map( Skill :: getId)
+                .collect(Collectors.toList());
     }
 }

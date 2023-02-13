@@ -25,7 +25,7 @@ public class Project extends BaseEntity{
     @JoinColumn(name="customer_id")
     private Customer customer;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "project", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "project", cascade = CascadeType.ALL)
     private Set<ProjectSkill> skills;
 
     public Project(Long id) {

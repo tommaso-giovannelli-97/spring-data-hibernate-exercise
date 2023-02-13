@@ -1,6 +1,8 @@
 package com.bitrock.springdataproject.repositories;
 
+import com.bitrock.springdataproject.dtos.EmployeeProjectSkillDto;
 import com.bitrock.springdataproject.entities.Employee;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -13,5 +15,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
             "INNER JOIN e2.skills s2 " +
             "WHERE e2.id = e.id) " +
             "order by e.id")
-    List<Employee> getAllEmployeesWithoutAGivenSkill(Long skillId);
+    List<Employee> getAllEmployeesWithoutAGivenSkill(Long skillId, Pageable pageable);
+
+    @Query("SELECT e FROM Employee e INNER JOIN e.projects p WHERE p.project.id = :projectId")
+    List<Employee> getEmployeesByProjectId(Long projectId);
 }

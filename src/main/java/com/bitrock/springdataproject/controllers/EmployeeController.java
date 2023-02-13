@@ -4,6 +4,7 @@ import com.bitrock.springdataproject.entities.Employee;
 import com.bitrock.springdataproject.entities.EmployeeProject;
 import com.bitrock.springdataproject.entities.EmployeeSkill;
 import com.bitrock.springdataproject.entities.Skill;
+import com.bitrock.springdataproject.repositories.EmployeeRepositoryCustom;
 import com.bitrock.springdataproject.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,12 +12,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
+
+    @Autowired
+    EmployeeRepositoryCustom employeeRepositoryCriteria;
 
     @GetMapping
     ResponseEntity<List<Employee>> getAll() {
@@ -30,8 +35,18 @@ public class EmployeeController {
     }
 
     @GetMapping("/missingSkill")
-    ResponseEntity<List<Employee>> getAllEmployeesWithoutAGivenSkill(@RequestBody Skill skill) {
-        return new ResponseEntity<>(employeeService.getAllEmployeesWithoutAGivenSkill(skill), HttpStatus.OK);
+    ResponseEntity<List<Employee>> getAllEmployeesWithoutAGivenSkill(@RequestParam Integer page, @RequestParam Integer size, @RequestBody Skill skill){
+        return new ResponseEntity<>(employeeService.getAllEmployeesWithoutAGivenSkill(skill, page, size), HttpStatus.OK);
+    }
+
+/*    @GetMapping("/withoutAllSkillsForProject")
+    ResponseEntity<List<EmployeeProject>> getAllEmployeesWithoutAllProjectSkills() {
+        return new ResponseEntity<>(employeeService.getAllEmployeesWithoutAllProjectSkills(), HttpStatus.OK);
+    }*/
+
+    @GetMapping("/withoutAllSkillsForProject")
+    ResponseEntity<List<EmployeeProject>> getAllEmployeesWithoutAllProjectSkills() {
+        return new ResponseEntity<>(employeeRepositoryCriteria.getAllEmployeesWithoutAllProjectSkills(), HttpStatus.OK);
     }
 
     @PostMapping
