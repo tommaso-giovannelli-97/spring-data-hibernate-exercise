@@ -1,10 +1,9 @@
-package com.bitrock.springdataproject.repositories;
+package com.bitrock.springdataproject.services;
 
 import com.bitrock.springdataproject.entities.Employee;
 import com.bitrock.springdataproject.entities.EmployeeProject;
 import com.bitrock.springdataproject.entities.Project;
 import com.bitrock.springdataproject.entities.ProjectSkill;
-import com.bitrock.springdataproject.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class EmployeeRepositoryCustom {
+public class EmployeeCriteriaAPIService {
     @Autowired
     EntityManager entityManager;
 
@@ -50,7 +49,6 @@ public class EmployeeRepositoryCustom {
     List<ProjectSkill> getAllProjectSkills() {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<ProjectSkill> cq = cb.createQuery(ProjectSkill.class);
-        Root<ProjectSkill> projectSkill = cq.from(ProjectSkill.class);
 
         return entityManager.createQuery(cq).getResultList();
     }

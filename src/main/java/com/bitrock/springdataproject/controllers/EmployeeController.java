@@ -4,7 +4,7 @@ import com.bitrock.springdataproject.entities.Employee;
 import com.bitrock.springdataproject.entities.EmployeeProject;
 import com.bitrock.springdataproject.entities.EmployeeSkill;
 import com.bitrock.springdataproject.entities.Skill;
-import com.bitrock.springdataproject.repositories.EmployeeRepositoryCustom;
+import com.bitrock.springdataproject.services.EmployeeCriteriaAPIService;
 import com.bitrock.springdataproject.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/employees")
@@ -21,7 +20,7 @@ public class EmployeeController {
     EmployeeService employeeService;
 
     @Autowired
-    EmployeeRepositoryCustom employeeRepositoryCriteria;
+    EmployeeCriteriaAPIService employeeCriteriaAPIService;
 
     @GetMapping
     ResponseEntity<List<Employee>> getAll() {
@@ -46,7 +45,7 @@ public class EmployeeController {
 
     @GetMapping("/withoutAllSkillsForProject")
     ResponseEntity<List<EmployeeProject>> getAllEmployeesWithoutAllProjectSkills() {
-        return new ResponseEntity<>(employeeRepositoryCriteria.getAllEmployeesWithoutAllProjectSkills(), HttpStatus.OK);
+        return new ResponseEntity<>(employeeCriteriaAPIService.getAllEmployeesWithoutAllProjectSkills(), HttpStatus.OK);
     }
 
     @PostMapping

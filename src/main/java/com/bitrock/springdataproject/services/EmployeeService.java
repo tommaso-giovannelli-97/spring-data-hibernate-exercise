@@ -1,13 +1,11 @@
 package com.bitrock.springdataproject.services;
 
-import com.bitrock.springdataproject.dtos.EmployeeProjectSkillDto;
 import com.bitrock.springdataproject.dtos.ProjectSkillDto;
 import com.bitrock.springdataproject.entities.*;
 import com.bitrock.springdataproject.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +13,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.mapping;
 
 @Service
 public class EmployeeService extends BaseDbService<Employee> {

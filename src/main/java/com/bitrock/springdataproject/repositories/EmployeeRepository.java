@@ -1,6 +1,5 @@
 package com.bitrock.springdataproject.repositories;
 
-import com.bitrock.springdataproject.dtos.EmployeeProjectSkillDto;
 import com.bitrock.springdataproject.entities.Employee;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
