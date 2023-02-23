@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -29,6 +30,9 @@ public class Employee extends BaseEntity{
 
     @Column(name = "age",nullable = false)
     private Integer age;
+
+    @Column(name = "birthday")
+    private LocalDate birthday;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "skillEmployee", cascade = CascadeType.ALL)

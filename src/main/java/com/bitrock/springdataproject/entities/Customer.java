@@ -1,5 +1,6 @@
 package com.bitrock.springdataproject.entities;
 
+import com.bitrock.springdataproject.dtos.CustomerProjectsCount;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,6 +25,11 @@ public class Customer extends BaseEntity{
 
     @OneToMany(mappedBy = "customer")
     private Set<Project> projects;
+
+    public static Customer from(CustomerProjectsCount customerProjectsCount) {
+        return new Customer(customerProjectsCount.getCustomerId()
+                , customerProjectsCount.getCustomerName(), null);
+    }
 
     @Override
     public boolean equals(Object o) {

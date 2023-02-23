@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -80,6 +82,12 @@ public class EmployeeService extends BaseDbService<Employee> {
                     .forEach(employee -> employeesWithoutAllProjectSkills.add(new EmployeeProject(employee, new Project(entry.getKey()))));
         }
         return employeesWithoutAllProjectSkills;
+    }
+
+    public List<Employee> getAllWithBirthdayBeforeGivenDate(String date){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate localDate = LocalDate.parse(date, formatter);
+        return employeeRepository.getAllWithBirthdayBeforeGivenDate(localDate);
     }
 
     public static Map<Long, List<Long>> getProjectsSkillsMap(List<ProjectSkill> allProjectsSkills) {

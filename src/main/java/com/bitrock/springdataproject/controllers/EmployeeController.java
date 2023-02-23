@@ -44,8 +44,13 @@ public class EmployeeController {
     }*/
 
     @GetMapping("/withoutAllSkillsForProject")
-    ResponseEntity<List<EmployeeProject>> getAllEmployeesWithoutAllProjectSkills() {
+    ResponseEntity<List<EmployeeProject>> getAllWithBirthdayBeforeGivenDate() {
         return new ResponseEntity<>(employeeCriteriaAPIService.getAllEmployeesWithoutAllProjectSkills(), HttpStatus.OK);
+    }
+
+    @GetMapping("/birthday")
+    ResponseEntity<List<Employee>> getAllEmployeesWithoutAllProjectSkills(@RequestParam String date) {
+        return new ResponseEntity<>(employeeService.getAllWithBirthdayBeforeGivenDate(date), HttpStatus.OK);
     }
 
     @PostMapping

@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
@@ -18,4 +19,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     @Query("SELECT e FROM Employee e INNER JOIN e.projects p WHERE p.project.id = :projectId")
     List<Employee> getEmployeesByProjectId(Long projectId);
+
+    @Query("select e from Employee e where e.birthday < :date")
+    List<Employee> getAllWithBirthdayBeforeGivenDate(
+            LocalDate date);
 }
